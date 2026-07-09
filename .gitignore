@@ -1,0 +1,11 @@
+# System Files
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# IDE Configurations
+.vscode/
+.idea/
+*.suo
+*.user
+*.workspace
