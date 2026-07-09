@@ -356,6 +356,18 @@ header.scrolled .nav-container {
   box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
 }
 
+.logo-img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 8px rgba(124, 58, 237, 0.15));
+  transition: var(--transition-smooth);
+}
+
+.logo:hover .logo-img {
+  transform: rotate(12deg) scale(1.08);
+}
+
 .brand-name {
   font-size: 1.25rem;
   letter-spacing: -0.02em;
@@ -894,7 +906,7 @@ header.scrolled .nav-container {
 
 .portfolio-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 30px;
 }
 
@@ -1281,8 +1293,17 @@ footer {
     gap: 30px;
   }
   
-  .calculator-form, .calculator-result-panel {
+  .nav-container {
+    padding: 10px 16px;
+  }
+  
+  .calculator-form {
     padding: 24px;
+  }
+  
+  .calculator-result-panel {
+    padding: 24px;
+    border-radius: 0 0 var(--border-radius) var(--border-radius) !important;
   }
 }
 
@@ -1299,7 +1320,7 @@ footer {
     width: 100%;
   }
   
-  .card-overlay-card {
+  .hero-overlay-card {
     display: none; /* Hide floating overlay cards on small screens for layout safety */
   }
   
