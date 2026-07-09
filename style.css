@@ -1240,6 +1240,10 @@ footer {
 }
 
 @media (max-width: 768px) {
+  .bg-decorations {
+    display: none;
+  }
+
   .section {
     padding: 60px 0;
   }
