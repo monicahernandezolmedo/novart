@@ -895,87 +895,223 @@ header.scrolled .nav-container {
   width: 100%;
 }
 
-/* --- PORTFOLIO (GALLERY) --- */
-.portfolio-filters {
+/* --- INTERACTIVE CATALOG --- */
+.catalog-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 40px;
+  align-items: center;
+  width: 100%;
+}
+
+.search-box-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  width: 100%;
+  max-width: 600px;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid var(--glass-border);
+  border-radius: 40px;
+  box-shadow: var(--glass-shadow);
+}
+
+.search-icon {
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+#catalog-search {
+  border: none;
+  background: none;
+  outline: none;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+  color: var(--text-primary);
+  width: 100%;
+}
+
+#catalog-search::placeholder {
+  color: var(--text-muted);
+}
+
+.catalog-filters {
   display: flex;
   justify-content: center;
-  gap: 12px;
-  margin-bottom: 48px;
+  gap: 10px;
   flex-wrap: wrap;
+  width: 100%;
 }
 
-.portfolio-grid {
+.cat-filter-btn {
+  padding: 10px 18px;
+  font-size: 0.88rem;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+.cat-filter-btn.active {
+  background: var(--primary);
+  color: #ffffff;
+  border-color: var(--primary);
+  box-shadow: 0 4px 15px var(--primary-glow);
+}
+
+.catalog-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 30px;
+  margin-bottom: 60px;
 }
 
-.portfolio-item {
-  border-radius: var(--border-radius);
+.product-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   overflow: hidden;
-  position: relative;
-  aspect-ratio: 4 / 3;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.8);
   transition: var(--transition-smooth);
 }
 
-.portfolio-item img {
+.product-card:hover {
+  transform: translateY(-6px);
+  background: #ffffff;
+  box-shadow: 0 16px 35px rgba(124, 58, 237, 0.05);
+  border-color: var(--primary-glow);
+}
+
+.product-image-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.product-image-wrapper img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.portfolio-info-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  padding: 30px;
-  background: linear-gradient(0deg, rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0.4) 60%, rgba(15, 23, 42, 0) 100%);
-  color: #ffffff;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  opacity: 0;
-  transform: translateY(15px);
   transition: var(--transition-smooth);
 }
 
-.portfolio-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
-}
-
-.portfolio-item:hover img {
+.product-card:hover .product-image-wrapper img {
   transform: scale(1.05);
 }
 
-.portfolio-item:hover .portfolio-info-overlay {
-  opacity: 1;
-  transform: translateY(0);
+.product-fallback-img {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.04) 0%, rgba(13, 148, 136, 0.04) 100%);
+  position: relative;
 }
 
-.portfolio-category {
-  font-size: 0.78rem;
-  font-weight: 600;
+.fallback-icon {
+  font-size: 3rem;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.05));
+}
+
+.product-badge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.72rem;
+  font-weight: 700;
   text-transform: uppercase;
-  color: var(--secondary);
-  margin-bottom: 6px;
   letter-spacing: 0.05em;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(4px);
+  border: 1px solid var(--glass-border);
+  color: var(--text-primary);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  z-index: 2;
 }
 
-.portfolio-item h3 {
-  color: #ffffff;
-  font-size: 1.25rem;
-  font-family: 'Outfit', sans-serif;
+.product-badge.navidad { color: #dc2626; border-color: rgba(220, 38, 38, 0.2); }
+.product-badge.autos { color: #2563eb; border-color: rgba(37, 99, 235, 0.2); }
+.product-badge.lamparas { color: #d97706; border-color: rgba(217, 119, 6, 0.2); }
+.product-badge.mascotas { color: #0d9488; border-color: rgba(13, 148, 136, 0.2); }
+.product-badge.geek { color: #7c3aed; border-color: rgba(124, 58, 237, 0.2); }
+.product-badge.corporativo { color: #475569; border-color: rgba(71, 85, 105, 0.2); }
+.product-badge.accesorios { color: #db2777; border-color: rgba(219, 39, 119, 0.2); }
+
+.product-info {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.product-info h3 {
+  font-size: 1.15rem;
   margin-bottom: 8px;
+  color: var(--text-primary);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
 }
 
-.portfolio-item p {
-  color: rgba(255, 255, 255, 0.8);
+.product-info p {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.btn-product-cotizar {
+  width: 100%;
+  padding: 10px 18px;
   font-size: 0.85rem;
+  margin-top: auto;
+}
+
+/* Custom banner styling */
+.custom-project-banner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 40px;
+  align-items: center;
+  padding: 48px;
+  margin-top: 60px;
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.04) 0%, rgba(13, 148, 136, 0.04) 100%);
+  border-color: rgba(124, 58, 237, 0.2);
+  border-radius: var(--border-radius);
+  border-style: solid;
+  border-width: 1px;
+}
+
+.banner-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  background: var(--primary-light);
+  color: var(--primary);
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  border: 1px solid rgba(124, 58, 237, 0.15);
+}
+
+.banner-content h3 {
+  font-size: 1.8rem;
+  margin-bottom: 12px;
+}
+
+.banner-content p {
+  font-size: 0.95rem;
+  max-width: 700px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.banner-cta {
+  flex-shrink: 0;
 }
 
 /* --- FAQ ACCORDION --- */
